@@ -1,3 +1,5 @@
+Start docker with command `sudo service docker start`
+
 Run with command `./build.sh`
 
 Error logs in WSL: `docker logs -f nginx 1>/dev/null` 

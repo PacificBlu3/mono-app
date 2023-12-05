@@ -2,6 +2,8 @@ services:
   # Build the app services
   backend:
     build: backend
+    ports:
+      - 3300:3300
   frontend:
     build: frontend
   nginx:
