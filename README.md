@@ -1,3 +1,5 @@
-Error logs in WSL: docker logs -f nginx 1>/dev/null
+Run with command `./build.sh`
 
-Access logs in WSL: docker logs -f nginx 2>/dev/null
+Error logs in WSL: `docker logs -f nginx 1>/dev/null` 
+
+Access logs in WSL: `docker logs -f nginx 2>/dev/null` 
