@@ -1,0 +1,13 @@
+services:
+  # Build the app services
+  backend:
+    build: backend
+  nginx:
+    container_name: nginx
+    build: nginx
+    # Bind the port 80 of container to machine port 80
+    ports:
+      - 3000:3000
+    # Make app as nginx dependency service
+    depends_on:
+      - backend
