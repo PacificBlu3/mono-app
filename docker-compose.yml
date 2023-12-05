@@ -2,6 +2,8 @@ services:
   # Build the app services
   backend:
     build: backend
+  backend:
+    build: frontend
   nginx:
     container_name: nginx
     build: nginx
