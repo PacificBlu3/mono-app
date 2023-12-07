@@ -1,5 +1,5 @@
 # Use an official Python runtime as the base image
-FROM node:20.10.0
+FROM node:20.10.0 as node
 
 # Set the working directory in the container
 WORKDIR /app
@@ -13,4 +13,13 @@ RUN npm install
 COPY . .
 
 RUN npm run build
+
+
+FROM nginx:latest
+
+COPY --from=node /app/dist /etc/nginx/dist
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 3000
 
