@@ -15,3 +15,4 @@ services:
     # Make app as nginx dependency service
     depends_on:
       - backend
+      - frontend
