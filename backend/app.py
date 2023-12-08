@@ -6,8 +6,7 @@ app.config["DEBUG"] = True
 # Index route
 @app.route("/test")
 def test():
-    print(request.headers.get('X-Authentication-Id'))
-    if(request.headers.get('X-Authentication-Id') is None):
+    if(request.headers.get('Authorization') is None):
         return '<h1>Unauthorized</h1>'
     else: 
         return '<h1>Authorized</h1>'

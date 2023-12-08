@@ -8,7 +8,7 @@ import (
 )
 
 func authHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Add("X-Authentication-Id", "nfn61xt4udbi793p")
+	w.Header().Add("Authorization", "nfn61xt4udbi793p")
 	w.WriteHeader(http.StatusOK)
 }
 
