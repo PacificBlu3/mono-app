@@ -19,6 +19,8 @@ FROM nginx:latest
 
 COPY --from=node /app/dist /etc/nginx/dist
 
+COPY --from=node /app/nginx-pages /etc/nginx/nginx-pages
+
 COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 3000

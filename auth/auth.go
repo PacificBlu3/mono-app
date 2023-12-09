@@ -8,8 +8,15 @@ import (
 )
 
 func authHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Add("Authorization", "nfn61xt4udbi793p")
-	w.WriteHeader(http.StatusOK)
+	cookie, err := r.Cookie("OAuth2-Token")
+	if cookie == nil || err != nil {
+		w.WriteHeader(http.StatusUnauthorized)
+		return
+	} else {
+		w.Header().Add("Authorization", "nfn61xt4udbi793p")
+		w.WriteHeader(http.StatusOK)
+	}
+
 }
 
 func main() {
