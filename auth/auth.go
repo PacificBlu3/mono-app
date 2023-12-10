@@ -29,12 +29,8 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		SameSite: http.SameSiteLaxMode,
 	}
 
-	// Use the http.SetCookie() function to send the cookie to the client.
-	// Behind the scenes this adds a `Set-Cookie` header to the response
-	// containing the necessary cookie data.
 	http.SetCookie(w, &cookie)
-	w.WriteHeader(http.StatusFound)
-	http.Redirect(w, r, "http://localhost:3000", 302)
+	http.Redirect(w, r, "http://localhost:3000/", 302)
 }
 
 func main() {
