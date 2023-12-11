@@ -9,3 +9,5 @@ Access logs in WSL: `docker logs -f nginx 2>/dev/null`
 Docker stop all: `docker stop $(docker ps -a -q)`
 
 Docker delete all: `docker rm $(docker ps -a -q)`
+
+Docker folder structure: `docker exec -it <container-id> bash`	
