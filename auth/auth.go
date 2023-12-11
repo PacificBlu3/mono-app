@@ -19,19 +19,19 @@ func authHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func loginHandler(w http.ResponseWriter, r *http.Request) {
-	// cookie := http.Cookie{
-	// 	Name:     "OAuth2-Token",
-	// 	Value:    "nfn61xt4udbi793p",
-	// 	Path:     "/",
-	// 	MaxAge:   3600,
-	// 	HttpOnly: true,
-	// 	Secure:   true,
-	// 	SameSite: http.SameSiteLaxMode,
-	// }
+	cookie := http.Cookie{
+		Name:     "OAuth2-Token",
+		Value:    "nfn61xt4udbi793p",
+		Path:     "/",
+		MaxAge:   3600,
+		HttpOnly: true,
+		Secure:   true,
+		SameSite: http.SameSiteLaxMode,
+	}
 
-	// http.SetCookie(w, &cookie)
-	w.WriteHeader(http.StatusUnauthorized)
-	//http.Redirect(w, r, "http://localhost:3000/", 302)
+	http.SetCookie(w, &cookie)
+	//w.WriteHeader(http.StatusUnauthorized)
+	http.Redirect(w, r, "http://localhost:3000/", 302)
 }
 
 func main() {

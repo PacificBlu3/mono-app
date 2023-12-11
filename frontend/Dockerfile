@@ -17,9 +17,9 @@ RUN npm run build
 
 FROM nginx:latest
 
-COPY --from=node /app/dist /etc/nginx/dist
+COPY --from=node /app/dist/browser /etc/nginx/html
 
-COPY --from=node /app/nginx-pages /etc/nginx/nginx-pages
+COPY --from=node /app/nginx-pages/ /etc/nginx/html
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
