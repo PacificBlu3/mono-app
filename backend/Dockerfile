@@ -1,24 +1,26 @@
-# Use an official Python runtime as the base image
-FROM python:3.11.4
+# syntax=docker/dockerfile:1
+FROM golang:1.21.5
 
-# Set the working directory in the container
+# Set destination for COPY
 WORKDIR /app
 
-# Copy the requirements.txt file to the container
-COPY requirements.txt .
+# Download Go modules
+COPY go.mod ./
+RUN go mod download
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy the source code. Note the slash at the end, as explained in
+# https://docs.docker.com/engine/reference/builder/#copy
+COPY *.go ./
 
-# Copy the rest of the application code to the container
-COPY . .
+# Build
+RUN CGO_ENABLED=0 GOOS=linux go build -o /api
 
+# Optional:
+# To bind to a TCP port, runtime parameters must be supplied to the docker command.
+# But we can document in the Dockerfile what ports
+# the application is going to listen on by default.
+# https://docs.docker.com/engine/reference/builder/#expose
 EXPOSE 3300
 
-# Set the default command to run when the container starts
-CMD [ "python", "app.py" ]
-
-# Add labels for better maintainability
-# LABEL maintainer="Your Name <your.email@example.com>"
-# LABEL version="1.0"
-# LABEL description="Dockerfile for Python 3 and Node.js"
+# Run
+CMD ["/api"]

@@ -1,5 +1,5 @@
 async function submitLogin() {
-    const http_req = fetch(window.origin + '/login', {
+    const response = fetch(window.origin + '/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -9,4 +9,8 @@ async function submitLogin() {
             password: document.querySelector('input[type="password"]').value
         })
     })   
+    const status = await response.status;
+    if(status == 200) {
+        window.location.href = window.location.href
+    }
 }

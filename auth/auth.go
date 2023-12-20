@@ -30,8 +30,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	http.SetCookie(w, &cookie)
-	//w.WriteHeader(http.StatusUnauthorized)
-	http.Redirect(w, r, "http://localhost:3000/", 302)
+	w.WriteHeader(http.StatusOK)
 }
 
 func main() {
