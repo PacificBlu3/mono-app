@@ -1,12 +1,11 @@
 package main
 
 import (
+	lib "auth/lib"
 	"errors"
 	"fmt"
 	"net/http"
 	"os"
-
-	"auth/sessionHandler"
 )
 
 func authHandler(w http.ResponseWriter, r *http.Request) {
@@ -22,7 +21,7 @@ func authHandler(w http.ResponseWriter, r *http.Request) {
 
 func verifyHandler(w http.ResponseWriter, r *http.Request) {
 
-	var sessionInstance sessionHandler.SessionObject = sessionHandler.sessionObjGen()
+	var sessionInstance = lib.SessionObjGen()
 
 	var cookie http.Cookie = http.Cookie{
 		Name:     sessionInstance.Cookie.Name,

@@ -1,16 +1,14 @@
-package sessionHandler
+package lib
 
-import {
-	"encoding/json"
-	"os"
-	"time"
+import (
+	"fmt"
 	"math/rand"
 	"net/http"
-	"errors"
-}
+	"time"
+)
 
-var cookieStr string = cookieValGen(16)
-var serviceToken string = cookieValGen(16)
+var cookieStr string = CookieValGen(16)
+var serviceToken string = CookieValGen(16)
 
 type CookieObject struct {
 	Name     string        `json:"name"`
@@ -29,16 +27,16 @@ type SessionObject struct {
 	LoggedAt time.Time    `json:"LoginTime"`
 }
 
-function sessionObjGen() SessionObject {
+func SessionObjGen() SessionObject {
 	return SessionObject{
 		Id:       1,
 		Username: "test",
-		Cookie:   sessionHandler.cookieObjGen(),
+		Cookie:   CookieObjGen(),
 		LoggedAt: time.Now(),
 	}
 }
 
-function cookieObjGen() CookieObject {
+func CookieObjGen() CookieObject {
 	return CookieObject{
 		Name:     "OAuth2-Token",
 		Value:    cookieStr,
@@ -50,7 +48,7 @@ function cookieObjGen() CookieObject {
 	}
 }
 
-func cookieValGen(length int) string {
+func CookieValGen(length int) string {
 	rand.Seed(time.Now().UnixNano())
 	b := make([]byte, length+2)
 	rand.Read(b)
