@@ -11,5 +11,5 @@ services:
   backend:
     build: backend
     ports:
-      - 3300:3300
+      - 5603:5603
 

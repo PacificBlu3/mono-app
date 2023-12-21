@@ -28,7 +28,7 @@ func main() {
 
 	http.HandleFunc("/test", testHandler)
 
-	err := http.ListenAndServe(":3300", nil)
+	err := http.ListenAndServe(":5603", nil)
 	if errors.Is(err, http.ErrServerClosed) {
 		fmt.Printf("server closed\n")
 	} else if err != nil {

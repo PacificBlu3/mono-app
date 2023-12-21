@@ -20,7 +20,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /api
 # But we can document in the Dockerfile what ports
 # the application is going to listen on by default.
 # https://docs.docker.com/engine/reference/builder/#expose
-EXPOSE 3300
+EXPOSE 5603
 
 # Run
 CMD ["/api"]
