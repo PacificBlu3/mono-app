@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+
+	"auth/sessionHandler"
 )
 
 func authHandler(w http.ResponseWriter, r *http.Request) {
@@ -13,20 +15,23 @@ func authHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusUnauthorized)
 		return
 	} else {
-		w.Header().Add("Authorization", "nfn61xt4udbi793p")
+		w.Header().Add("Authorization", "serviceToken")
 		w.WriteHeader(http.StatusOK)
 	}
 }
 
 func verifyHandler(w http.ResponseWriter, r *http.Request) {
-	cookie := http.Cookie{
-		Name:     "OAuth2-Token",
-		Value:    "nfn61xt4udbi793p",
-		Path:     "/",
-		MaxAge:   3600,
-		HttpOnly: true,
-		Secure:   true,
-		SameSite: http.SameSiteLaxMode,
+
+	var sessionInstance sessionHandler.SessionObject = sessionHandler.sessionObjGen()
+
+	var cookie http.Cookie = http.Cookie{
+		Name:     sessionInstance.Cookie.Name,
+		Value:    sessionInstance.Cookie.Value,
+		Path:     sessionInstance.Cookie.Path,
+		MaxAge:   sessionInstance.Cookie.MaxAge,
+		HttpOnly: sessionInstance.Cookie.HttpOnly,
+		Secure:   sessionInstance.Cookie.Secure,
+		SameSite: sessionInstance.Cookie.SameSite,
 	}
 
 	http.SetCookie(w, &cookie)

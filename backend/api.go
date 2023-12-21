@@ -7,8 +7,7 @@ import (
 	"os"
 )
 
-const htmlElem = `
-<h1>Authorized</h1>`
+const htmlElem = `<h1>Authorized</h1>`
 
 func testHandler(w http.ResponseWriter, r *http.Request) {
 	cookie, err := r.Cookie("OAuth2-Token")
