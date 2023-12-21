@@ -23,6 +23,8 @@ func verifyHandler(w http.ResponseWriter, r *http.Request) {
 
 	var sessionInstance = lib.SessionObjGen()
 
+	lib.Print()
+
 	var cookie http.Cookie = http.Cookie{
 		Name:     sessionInstance.Cookie.Name,
 		Value:    sessionInstance.Cookie.Value,
