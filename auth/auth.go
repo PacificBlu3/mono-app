@@ -18,7 +18,7 @@ func authHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func loginHandler(w http.ResponseWriter, r *http.Request) {
+func verifyHandler(w http.ResponseWriter, r *http.Request) {
 	cookie := http.Cookie{
 		Name:     "OAuth2-Token",
 		Value:    "nfn61xt4udbi793p",
@@ -35,7 +35,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/auth", authHandler)
-	http.HandleFunc("/login", loginHandler)
+	http.HandleFunc("/verify", verifyHandler)
 
 	err := http.ListenAndServe(":4128", nil)
 	if errors.Is(err, http.ErrServerClosed) {
